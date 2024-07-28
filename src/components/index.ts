@@ -17,3 +17,9 @@ export { default as ALink } from './atoms/ALink.vue'
 export {default as MRatingBar } from './molecules/MRatingBar.vue'
 
 export { default as MRatingSelector } from './molecules/MRatingSelector.vue'
+
+export { default as AToggle } from './atoms/AToggle.vue'
+
+export { default as MFullAmountPayment } from './molecules/MFullAmountPayment.vue'
+
+export { default as MSwenModal } from './molecules/MSwenModal.vue'

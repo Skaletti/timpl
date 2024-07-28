@@ -4,6 +4,7 @@
       :centeredSlides="true"
       :grabCursor="true"
       @slideChange="onSlideChange"
+      @swiper="onMountSwiper"
       :width="478"
       class="person-slider"
   >
@@ -28,18 +29,31 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import type {personType} from "@/types"
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
 
 type Props = {
   persons: personType[]
 }
 
+const emit = defineEmits(['updatePersonName']);
+
 const props = defineProps<Props>()
 
 const activeIndex = ref(0);
 
+const currentPerson = ref(props.persons[0])
+
+const onMountSwiper = (swiper: any) => {
+  onSlideChange(swiper)
+}
+
 const onSlideChange = (swiper: any) => {
   activeIndex.value = swiper.activeIndex;
+  currentPerson.value = props.persons[swiper.activeIndex];
+
+  if (currentPerson) {
+    emit('updatePersonName', currentPerson.value.name);
+  }
 }
 </script>
 
